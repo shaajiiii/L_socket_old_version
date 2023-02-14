@@ -16,10 +16,11 @@ const io = new Server(server, {
 })
 
 io.on('connection', (socket) => { 
-    console.log(socket.id);
+    console.log('CONNECTED >>>');
+    console.log(socket.id,"\n");
 
     socket.on('disconnect', ()=>{
-        console.log("disconnected");
+        console.log("DISCONNECTED >>>\n");
     })
 })
 
