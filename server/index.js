@@ -24,13 +24,12 @@ io.on('connection', (socket) => {
         socket.join(roomId);
         console.log(`user :${socket.id} has joined Room : ${roomId}`);
     })
+
     socket.on('send_message',(data)=>{
-        console.log('SENT MESSAGE FUNCTION >>>');
-        console.log("Data received : ");
-        console.log(data);
+        socket.to(data.room).emit('receive_message',data)
     })
 
-
+    //====
 
     socket.on('disconnect', ()=>{
         console.log("DISCONNECTED >>>\n");

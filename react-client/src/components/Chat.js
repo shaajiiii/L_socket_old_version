@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Chat({ socket, username, room }) {
     const [currentMessage, setCurrentMessage] = useState("");
@@ -11,10 +11,16 @@ function Chat({ socket, username, room }) {
                 message: currentMessage,
                 time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`
             }
-            console.log(msgData);
             await socket.emit('send_message', msgData);
         }
     }
+
+    useEffect(()=>{
+        socket.on('receive_message', (data)=>{
+            console.log('inside use effect>>>>');
+            console.log(data);
+        })
+    } , [socket])
 
     return (
         <div>
