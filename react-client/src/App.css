@@ -53,14 +53,16 @@ body {
 .chat-window {
   width: 300px;
   height: 420px;
+ 
 }
 
 .chat-window p {
   margin: 0;
+
 }
 .chat-window .chat-header {
   height: 45px;
-  border-radius: 6px;
+  border-radius: 6px 6px 0px 0px;
   background: #263238;
   position: relative;
   cursor: pointer;
@@ -83,13 +85,16 @@ body {
 .chat-window .chat-body .message-container {
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
 .chat-window .chat-body .message-container::-webkit-scrollbar {
   display: none;
 }
+
+
+
 .chat-window .chat-body .message {
   height: auto;
   padding: 10px;
@@ -114,29 +119,29 @@ body {
   word-break: break-word;
 }
 
-#you {
+#other {
   justify-content: flex-start;
 }
 
-#you .message-content {
+#other .message-content {
   justify-content: flex-start;
 }
 
-#you .message-meta {
+#other .message-meta {
   justify-content: flex-start;
   margin-left: 5px;
 }
 
-#other {
+#you {
   justify-content: flex-end;
 }
 
-#other .message-content {
+#you .message-content {
   justify-content: flex-end;
   background-color: cornflowerblue;
 }
 
-#other .message-meta {
+#you .message-meta {
   justify-content: flex-end;
   margin-right: 5px;
 }
@@ -156,6 +161,7 @@ body {
   border: 1px solid #263238;
   border-top: none;
   display: flex;
+  
 }
 
 .chat-window .chat-footer input {
@@ -164,7 +170,7 @@ body {
   border: 0;
   padding: 0 0.7em;
   font-size: 1em;
-  border-right: 1px dotted #607d8b;
+  /* border-right: 1px dotted #607d8b; */
 
   outline: none;
   font-family: "Open Sans", sans-serif;
