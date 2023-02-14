@@ -15,23 +15,23 @@ const io = new Server(server, {
     },
 })
 
-io.on('connection', (socket) => { 
+io.on('connection', (socket) => {
     console.log('CONNECTED >>>');
     console.log(`User ID : ${socket.id}\n`);
 
     // user defined
-    socket.on('join_room',(roomId)=>{
+    socket.on('join_room', (roomId) => {
         socket.join(roomId);
         console.log(`user :${socket.id} has joined Room : ${roomId}`);
     })
 
-    socket.on('send_message',(data)=>{
-        socket.to(data.room).emit('receive_message',data)
+    socket.on('send_message', (data) => {
+        socket.to(data.room).emit('receive_message', data)
     })
 
     //====
 
-    socket.on('disconnect', ()=>{
+    socket.on('disconnect', () => {
         console.log("DISCONNECTED >>>\n");
     })
 })

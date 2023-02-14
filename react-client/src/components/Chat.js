@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 function Chat({ socket, username, room }) {
     const [currentMessage, setCurrentMessage] = useState("");
+    const [messageList, setMessageList] = useState(["test"]);
 
     const sentMessage = async () => {
-        if(currentMessage !== ""){
+        if (currentMessage !== "") {
             const msgData = {
                 room,
                 author: username,
@@ -15,21 +16,27 @@ function Chat({ socket, username, room }) {
         }
     }
 
-    useEffect(()=>{
-        socket.on('receive_message', (data)=>{
-            console.log('inside use effect>>>>');
+    useEffect(() => {
+        socket.on('receive_message', (data) => {
             console.log(data);
+            setMessageList((list) => [...list, data]) //we can grab current state like this?
         })
-    } , [socket])
+    }, [socket])
 
     return (
-        <div className='chat-window'> 
+        <div className='chat-window'>
             <div className='chat-header'>
                 <p>Live chat </p>
             </div>
             <div className='chat-body'>
-                <span> Nill for now </span>
+                {messageList.map((eachMessageObj) => {
+                    return (
+                        <h1>{eachMessageObj.message}  </h1>
+                    )
+                   
+                })}
             </div>
+
             <div className='chat-footer'>
                 <input type="text" placeholder='type message..' onChange={(e) => {
                     setCurrentMessage(e.target.value);
